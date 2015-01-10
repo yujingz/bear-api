@@ -12,6 +12,7 @@ gem 'hashie_rails'
 
 gem 'ffaker'
 gem 'bcrypt', '~> 3.1.7'
+gem 'rack-cors', require: 'rack/cors'
 
 group :production do
   gem 'rails_12factor'
