@@ -11,6 +11,10 @@ require 'ffaker'
 User.destroy_all
 Idea.destroy_all
 
+User.create(username: 'heqi', password: "123456", password_confirmation: "123456")
+User.create(username: 'wudi', password: "123456", password_confirmation: "123456")
+User.create(username: 'test', password: "123456", password_confirmation: "123456")
+
 10.times do
   User.create(username: Faker::Internet::user_name, password: "123456", password_confirmation: "123456")
 end
