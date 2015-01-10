@@ -13,6 +13,10 @@ gem 'hashie_rails'
 gem 'ffaker'
 gem 'bcrypt', '~> 3.1.7'
 
+group :production do
+  gem 'rails_12factor'
+end
+
 group :development, :test do
   gem 'thin'
   gem 'byebug'
