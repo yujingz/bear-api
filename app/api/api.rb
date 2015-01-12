@@ -45,7 +45,7 @@ class API < Grape::API
   params do
     requires :token
   end
-  get 'ideas/:id/down' do
+  post 'ideas/:id/down' do
     authenticate!
     idea = Idea.find(params[:id])
     if idea.present?
