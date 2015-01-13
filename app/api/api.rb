@@ -8,11 +8,62 @@ class API < Grape::API
   helpers APIHelpers
 
   params do
-    requires :token
+    # requires :token
   end
   get 'ideas' do
-    authenticate!
+    # authenticate!
     Idea.includes(:creator).as_json(include: [:creator])
+  end
+
+  params do
+    requires :token
+    requires :title
+    requires :content
+  end
+  post 'ideas' do
+    authenticate!
+    creator = User.find_by(token: params[:token])
+    idea = Idea.new(
+      title:   params[:title],
+      content: params[:content],
+      creator: creator
+    )
+    if idea.save
+      idea
+    else
+      error!({error: idea.errors}, 422)
+    end
+  end
+
+  params do
+    requires :token
+    requires :title
+    requires :content
+  end
+  put 'ideas/:id' do
+    authenticate!
+    idea = Idea.where(id: params[:id]).first
+    error!({error: "no such idea"}, 404) if idea.nil?
+    idea.assign_attributes(
+      title:   params[:title],
+      content: params[:content]
+    )
+    if idea.save
+      idea
+    else
+      error!({error: idea.errors}, 422)
+    end
+  end
+
+  params do
+    requires :token
+  end
+  delete 'ideas/:id' do
+    authenticate!
+    idea = Idea.where(id: params[:id]).first
+    error!({error: "no such idea"}, 404) if idea.nil?
+    error!({error: idea.errors}, 422) unless idea.destroy
+    {Success: 'Idea Deleted!'}
   end
 
   params do
