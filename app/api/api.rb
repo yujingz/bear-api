@@ -8,10 +8,10 @@ class API < Grape::API
   helpers APIHelpers
 
   params do
-    # requires :token
+    requires :token
   end
   get 'ideas' do
-    # authenticate!
+    authenticate!
     Idea.includes(:creator).as_json(include: [:creator])
   end
 
