@@ -63,7 +63,7 @@ class API < Grape::API
     idea = Idea.where(id: params[:id]).first
     error!({error: "no such idea"}, 404) if idea.nil?
     error!({error: idea.errors}, 422) unless idea.destroy
-    {Success: 'Idea Deleted!'}
+    { Success: 'Idea Deleted!' }
   end
 
   params do

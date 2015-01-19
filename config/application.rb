@@ -25,7 +25,7 @@ module IdeaVoter
       allow do
         origins '*'
         # location of your API
-        resource '/api/*', :headers => :any, :methods => [:get, :post, :options, :put]
+        resource '/api/*', :headers => :any, :methods => [:get, :post, :options, :put, :delete]
       end
     end
   end
