@@ -5,8 +5,8 @@ default: &default
 
 development:
   <<: *default
-  database: idea-voter_development
+  database: bear-api_development
 
 test:
   <<: *default
-  database: idea-voter_test
+  database: bear-api_test
