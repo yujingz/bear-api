@@ -12,7 +12,7 @@ class API < Grape::API
   end
   get 'ideas' do
     authenticate!
-    Idea.as_json(include: [:creator])
+    Idea.all
   end
 
   params do
